@@ -8,5 +8,4 @@ public interface IWeaponInterface
 
     int MaxAmmo();
 
-    bool Reload();
 }
