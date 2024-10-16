@@ -8,20 +8,29 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int ammunitionCurrent;
     [SerializeField] private int ammunitionMax;
 
+    private bool canShoot = true;
+
     // set up a common things that ALL weapons have 
     // thing like
     // shoot 
     public virtual void Shoot()
     {
-      if (HasEnoughAmmo())
+      if (HasEnoughAmmo() == true)
         {
             // shoot...
         }
-      
 
+        Debug.Log(AddNumbers(1,2));
     }
 
-    public bool HasEnoughAmmo()
+    private int AddNumbers(int a, int b) // this is an example
+    {
+        int result = a + b;
+
+        return result;
+    }
+   
+    protected bool HasEnoughAmmo() // uses protected - can be used while in inherited classes
     {
         if (ammunitionCurrent > 0)
         {
