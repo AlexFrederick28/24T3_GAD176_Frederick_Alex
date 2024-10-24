@@ -27,7 +27,7 @@ public class Pistol : MonoBehaviour, IWeaponInterface
         {
             PistolAmmo--;
 
-            Instantiate(pistolBullet, transform.position, Quaternion.identity);
+            Instantiate(pistolBullet, transform.position, transform.rotation);
 
             Debug.Log("Shooting " + gameObject);
         }

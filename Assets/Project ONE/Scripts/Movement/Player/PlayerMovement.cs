@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,10 +13,16 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
-    private float inputX;
-    private float inputY;
+    [SerializeField] private float inputX;
+    [SerializeField] private float inputY;
 
-    [SerializeField] private bool isGrounded;
+    [SerializeField] private float sensX;
+    [SerializeField] private float sensY;
+
+    [SerializeField] float xRotation;
+    [SerializeField] float yRotation;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,35 +33,35 @@ public class PlayerMovement : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
 
-        
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        inputX = Input.GetAxisRaw("Horizontal"); // get left right input
-        inputY = Input.GetAxisRaw("Vertical"); // get forward back input
-
         moveDirection = new Vector3(inputX, 0, inputY); // introducing move vectors
         moveDirection.Normalize();
 
+        inputX = Input.GetAxisRaw("Horizontal"); // get left right input
+        inputY = Input.GetAxisRaw("Vertical"); // get forward back input
+
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime); // setting movement
 
-        transform.LookAt(Input.mousePosition);
-    }
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-    public void OnCollisionEnter(Collision collision)
-    {
+        yRotation += mouseX;
+
+        xRotation -= mouseY;
+
+        xRotation = Mathf.Clamp(xRotation, -90, 90);
+
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
         
 
-        if (collision.transform.GetComponent<Floor>())
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
     }
+
+
 }
