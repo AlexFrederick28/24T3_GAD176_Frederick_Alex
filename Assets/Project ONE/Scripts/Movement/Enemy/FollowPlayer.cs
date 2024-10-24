@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
@@ -22,16 +24,24 @@ public class FollowPlayer : MonoBehaviour
 
     private void Update()
     {
+        
         MoveToPlayer();
     }
 
+    
+
     protected void MoveToPlayer()
     {
-        chasePlayer = (PlayerMovement.transform.position - transform.position).normalized;
+        chasePlayer = (PlayerMovement.transform.position - transform.position);
 
+        Debug.Log("Enemty is " + chasePlayer.magnitude + " units away!");
+
+        chasePlayer = chasePlayer.normalized;
         transform.position += chasePlayer * Time.deltaTime * moveSpeed;
 
         transform.LookAt(PlayerMovement.transform);
+
+        
     }
 
     public void OnCollisionEnter(Collision collision)

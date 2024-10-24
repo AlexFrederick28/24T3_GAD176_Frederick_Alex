@@ -4,11 +4,13 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : Sound
 {
     [SerializeField] private float enemyHealth = 100;
 
     public TextMeshPro EnemyHealthIndication;
+
+    public SpawnEnemies spawnEnemies;
 
     public float EnemyHealth
     {
@@ -30,13 +32,33 @@ public class EnemyStats : MonoBehaviour
 
     private void Update()
     {
+        
         EnemyHealthIndication.text = EnemyHealth.ToString();
 
         if (enemyHealth == 0)
         {
+            spawnEnemies.SpawnedEnemies.Remove(gameObject);
             Destroy(gameObject);
         }
     }
 
+    public void Start()
+    {
+        if (spawnEnemies == null)
+        {
+            spawnEnemies = FindObjectOfType<SpawnEnemies>();
+        }
 
+        spawnEnemies.SpawnedEnemies.Add(gameObject);
+
+        SeenPlayer();
+    }
+
+    protected override void SeenPlayer()
+    {
+        AudioSource.volume = 0.05f;
+        base.SeenPlayer();
+    }
+
+    
 }
