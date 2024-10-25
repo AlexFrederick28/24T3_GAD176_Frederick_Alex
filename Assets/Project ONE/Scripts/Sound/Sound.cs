@@ -10,7 +10,7 @@ public class Sound : MonoBehaviour
     [SerializeField] protected AudioSource AudioSource;
     [SerializeField] protected AudioClip sfx1, sxf2;
 
-    protected virtual void SeenPlayer()
+    protected virtual void SeenPlayer() // use function in inherited scripts to enable sounds (Plays when a player is spotted)
     {
 
         AudioSource.clip = sfx1;

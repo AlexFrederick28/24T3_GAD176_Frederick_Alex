@@ -8,11 +8,11 @@ public class EnemyStats : Sound
 {
     [SerializeField] private float enemyHealth = 100;
 
-    public TextMeshPro EnemyHealthIndication;
+    public TextMeshPro EnemyHealthIndication; // shows enemy health as text
 
     public SpawnEnemies spawnEnemies;
 
-    public float EnemyHealth
+    public float EnemyHealth // ensures that the player health cannot go below 0 or above 100
     {
         get { return enemyHealth; }
         set
@@ -33,9 +33,9 @@ public class EnemyStats : Sound
     private void Update()
     {
         
-        EnemyHealthIndication.text = EnemyHealth.ToString();
+        EnemyHealthIndication.text = EnemyHealth.ToString(); // shows enemy health as text
 
-        if (enemyHealth == 0)
+        if (enemyHealth == 0) // destroys enemy at 0 health
         {
             spawnEnemies.SpawnedEnemies.Remove(gameObject);
             Destroy(gameObject);
@@ -44,19 +44,19 @@ public class EnemyStats : Sound
 
     public void Start()
     {
-        if (spawnEnemies == null)
+        if (spawnEnemies == null) // gets scripts automatically
         {
             spawnEnemies = FindObjectOfType<SpawnEnemies>();
         }
 
         spawnEnemies.SpawnedEnemies.Add(gameObject);
 
-        SeenPlayer();
+        SeenPlayer(); // plays sounds
     }
 
     protected override void SeenPlayer()
     {
-        AudioSource.volume = 0.05f;
+        AudioSource.volume = 0.05f; // lowering the volume
         base.SeenPlayer();
     }
 

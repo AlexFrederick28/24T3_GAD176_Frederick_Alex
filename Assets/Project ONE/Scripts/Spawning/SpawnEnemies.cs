@@ -12,11 +12,11 @@ public class SpawnEnemies : MonoBehaviour
 
     public void Update()
     {
-        if (enemyStats == null)
+        if (enemyStats == null) // gets scripts automatically
         {
             enemyStats = FindObjectOfType<EnemyStats>();
         }
-        if (SpawnedEnemies.Count == 0)
+        if (SpawnedEnemies.Count == 0) // if there are no enemies in the scene, spawn one
         {
             Instantiate(spawnEnemy, transform.position, Quaternion.identity);
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,23 +13,23 @@ public class Bullet : MonoBehaviour
     
     void Update()
     {
-        if (rb == null)
+        if (rb == null) // gets scripts automatically
         {
             enemyStats = FindObjectOfType<EnemyStats>();
             rb = GetComponent<Rigidbody>();
         }
 
 
-        rb.AddForce(transform.forward * 10);
+        rb.AddForce(transform.forward * 10); // bullet gets propelled forward
 
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 2); // destroys itself after a delay of 2 seconds
 
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<EnemyStats>())
+        if (collision.gameObject.GetComponent<EnemyStats>()) // if it hits an enemy it will deal 20 damage and destroy itself
         {
             enemyStats.EnemyHealth -= 20;
 

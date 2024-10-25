@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private float playerHealth = 100;
+    [SerializeField] private float playerHealth = 100; // player health
 
     public TextMeshProUGUI HealthIndication;
 
-    public float PlayerHealth
+    public float PlayerHealth // ensures that the player health cannot go below 0 or above 100
     {
         get { return playerHealth; }
         set
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update() // text showing player health at all times
     {
         HealthIndication.text = "HP = " + PlayerHealth.ToString();
     }
