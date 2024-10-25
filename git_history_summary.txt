@@ -1,0 +1,11 @@
+* d2d0a71 (HEAD -> develop, origin/feature/weapons, origin/develop, feature/weapons) Added Materials due to shader update in unity
+* 863591e Enemy respawns after dying. Added Sound. (FORGOT TO BUILD AND MERGE WITH AI BRANCH)
+* f58ddfe Unity Cloud
+* 0a11153 Made enemy AI, Player and Enemy can take damage. Enemy can die.
+* 2444e14 Implemented player movement and bullets
+* d09147f Attempted player movement and made prefabs
+* 28486ca Implemented weapon scene, as well as folders. Started making weapon interface
+| * 3f3fa5d (origin/main, origin/HEAD, main) Protected (Example)
+| * c52bd7f ImportedWeekly Acitvities wasnt repod
+|/  
+* 5e316bb (origin/feature/ai, feature/ai) Initial commit
